@@ -23,7 +23,7 @@ public class MovingCharacter : MonoBehaviour
         if (Time.time >= nextKeydown)
         {
             Keyboard();
-            nextKeydown = Time.time + keydown;
+            nextKeydown = Time.deltaTime + keydown;
         }
     }
 
@@ -31,19 +31,19 @@ public class MovingCharacter : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            cha.transform.Translate(0f, 0.05f, 0f);
+            cha.transform.Translate(0f, 0.01f, 0f);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            cha.transform.Translate(0f, -0.05f, 0f);
+            cha.transform.Translate(0f, -0.01f, 0f);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            cha.transform.Translate(-0.05f, 0f, 0f);
+            cha.transform.Translate(-0.01f, 0f, 0f);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            cha.transform.Translate(0.05f, 0f, 0f);
+            cha.transform.Translate(0.01f, 0f, 0f);
         }
     }
 }
