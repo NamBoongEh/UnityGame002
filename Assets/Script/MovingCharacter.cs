@@ -9,6 +9,7 @@ public class MovingCharacter : MonoBehaviour
     float keydown = 0.01f;
     float nextKeydown = 0.0f;
     NavMeshAgent agent;
+    bool pause;
 
     void Start()
     {
@@ -16,14 +17,19 @@ public class MovingCharacter : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        pause = GameObject.Find("GameManager").GetComponent<GameScript>().pause;
     }
 
     void Update()
     {
-        if (Time.time >= nextKeydown)
+        if (!pause)
         {
-            Keyboard();
-            nextKeydown = Time.deltaTime + keydown;
+            if (Time.time >= nextKeydown)
+            {
+                Keyboard();
+                nextKeydown = Time.deltaTime + keydown;
+            }
         }
     }
 
