@@ -4,35 +4,21 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("여기 닿음");
+    Vector3 cha;
 
-        if (collision.gameObject.tag == "Player")
-            Destroy(gameObject);
+    private void Start()
+    {
+        cha = GameObject.Find("Character").transform.position;
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        Debug.Log("2D 여기 닿음");
+        Debug.Log("포지션은  : " + cha);
 
-        if (collision.gameObject.tag == "Player")
-            Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("2D trigger 여기 닿음");
-
-        if (collision.gameObject.tag == "Player")
-            Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("trigger 여기 닿음");
-
-        if (other.gameObject.tag == "Player")
-            Destroy(gameObject);
+        if((cha.x <= -2.65 && cha.x >= -3.5) && (cha.z <= -0.1 && cha.z >= -1.4))
+        {
+            Debug.Log("동전에 닿았다");
+        }
     }
 }
