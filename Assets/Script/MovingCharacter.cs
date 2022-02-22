@@ -11,6 +11,9 @@ public class MovingCharacter : MonoBehaviour
     NavMeshAgent agent;
     bool pause;
 
+    Animator moveRnU;
+    Animator moveLnD;
+
     void Start()
     {
         cha = GameObject.Find("Character");
@@ -19,6 +22,9 @@ public class MovingCharacter : MonoBehaviour
         agent.updateUpAxis = false;
 
         pause = GameObject.Find("GameManager").GetComponent<GameScript>().pause;
+
+        moveRnU = GetComponent<Animator>();
+        moveLnD = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,19 +43,23 @@ public class MovingCharacter : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            cha.transform.Translate(0f, 0.01f, 0f);
+            cha.transform.position += new Vector3(0f, 0.01f, 0f);
+            moveRnU.SetBool("moveRnU", true);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            cha.transform.Translate(0f, -0.01f, 0f);
+            cha.transform.position += new Vector3(0f, -0.01f, 0f);
+            moveRnU.SetBool("moveLnD", true);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            cha.transform.Translate(-0.01f, 0f, 0f);
+            cha.transform.position += new Vector3(-0.01f, 0f, 0f);
+            moveRnU.SetBool("moveLnD", true);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            cha.transform.Translate(0.01f, 0f, 0f);
+            cha.transform.position += new Vector3(0.01f, 0f, 0f);
+            moveRnU.SetBool("moveRnU", true);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    public float cameraSpeed = 5.0f;
+    public float cameraSpeed = 10.0f;
     public GameObject player;
 
     private void Update()

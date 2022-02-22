@@ -34,7 +34,7 @@ public class GameScript : MonoBehaviour
         }
 
         timer = timer + Time.deltaTime;
-        Debug.Log(string.Format(timer + ""));
+        //Debug.Log(string.Format(timer + ""));
 
     }
 
