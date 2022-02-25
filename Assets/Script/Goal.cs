@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
     public GameObject[] goal;
     public bool[] goalSwitch = new bool[4];
     GameObject cha;
+    public GameObject end;
+    int endCount = 0;
 
     private void Awake()
     {
@@ -40,5 +43,12 @@ public class Goal : MonoBehaviour
         Debug.Log("골 지워진다  :  " + num);
         Destroy(goal[num]);
         goalSwitch[num] = false;
+        endCount++;
+
+        if(endCount == 4)
+        {
+            end.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }

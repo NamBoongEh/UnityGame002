@@ -10,6 +10,7 @@ public class MovingCharacter : MonoBehaviour
     float nextKeydown = 0.0f;
     NavMeshAgent agent;
     bool pause;
+    public float speed;
 
     Animator moveRnU;
     Animator moveLnD;
@@ -43,23 +44,33 @@ public class MovingCharacter : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            cha.transform.position += new Vector3(0f, 0.01f, 0f);
-            moveRnU.SetBool("moveRnU", true);
+            cha.transform.position += new Vector3(0f, speed * Time.deltaTime, 0f);
+            MoveAni(false, true);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
-            cha.transform.position += new Vector3(0f, -0.01f, 0f);
-            moveRnU.SetBool("moveLnD", true);
+            cha.transform.position += new Vector3(0f, -speed * Time.deltaTime, 0f);
+            MoveAni(true, false);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            cha.transform.position += new Vector3(-0.01f, 0f, 0f);
-            moveRnU.SetBool("moveLnD", true);
+            cha.transform.position += new Vector3(-speed * Time.deltaTime, 0f, 0f);
+            MoveAni(true, false);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
-            cha.transform.position += new Vector3(0.01f, 0f, 0f);
-            moveRnU.SetBool("moveRnU", true);
+            cha.transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
+            MoveAni(false, true);
         }
+        else if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            MoveAni(false, false);
+        }
+    }
+
+    void MoveAni(bool LnD, bool RnU)
+    {
+        moveLnD.SetBool("moveLnD", LnD);
+        moveRnU.SetBool("moveRnU", RnU);
     }
 }
